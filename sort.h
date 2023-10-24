@@ -24,7 +24,9 @@ void print_array(const int *array, size_t size);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
 
 /*Helper function */
 void swap(int *a, int *b);
+int get_max_num(int *array, size_t size);
 #endif
