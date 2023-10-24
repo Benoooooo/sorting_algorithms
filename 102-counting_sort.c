@@ -1,5 +1,4 @@
 #include "sort.h"
-
 /**
  * get_max_num - finds the maximum value in an array
  * @array: the array
@@ -21,7 +20,6 @@ int get_max_num(int *array, size_t size)
 
 	return (max);
 }
-
 /**
  * counting_sort - sorting an array using counting_sort
  *		algorithm
@@ -32,7 +30,7 @@ int get_max_num(int *array, size_t size)
 
 void counting_sort(int *array, size_t size)
 {
-	int i, *counter, *output; 
+	int i, *counter, *output;
 	int j, n;
 
 	if (array == NULL || size < 2)
@@ -47,7 +45,6 @@ void counting_sort(int *array, size_t size)
 		free(output);
 		return;
 	}
-
 	for (i = 0; i < n + 1; i++)
 		counter[i] = 0;
 
@@ -56,18 +53,15 @@ void counting_sort(int *array, size_t size)
 		j = array[i];
 		counter[j] += 1;
 	}
-
 	for (i = 1; i < n + 1; i++)
 		counter[i] += counter[i - 1];
 	print_array(counter, n + 1);
-
 	for (i = (int)size; i > 0; i--)
 	{
 		j = array[i - 1];
 		counter[j] -= 1;
 		output[counter[j]] = array[i - 1];
 	}
-
 	for (i = 0; i < (int)size; i++)
 		array[i] = output[i];
 
