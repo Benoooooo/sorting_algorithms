@@ -19,28 +19,34 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *key, *temp;
+	listint_t *current, *insert;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
+	if (!list || !*list || !(*list)->next)
 		return;
 
-	for (key = (*list)->next; key != NULL; key = key->next)
+	current = (*list)->next;
+
+	while (current)
 	{
-		for (temp = key->prev; temp != NULL && temp->n > key->n; temp = temp->prev)
+		insert = current;
+		current = current->next;
+
+		while (insert->prev && insert->n < insert->prev->n)
 		{
-			if (temp->prev != NULL)
-				temp->prev->next = key;
+			if (insert->next)
+				insert->next->prev = insert->prev;
+
+			insert->prev->next = insert->next;
+			insert->next = insert->prev;
+			insert->prev = insert->prev->prev;
+
+			if (insert->prev)
+				insert->prev->next = insert;
 			else
-				*list = key;
+				*list = insert;
 
-			if (key->next != NULL)
-				key->next->prev = temp;
+			insert->next->prev = insert;
 
-			key->prev = temp->prev;
-			temp->prev = key->next;
-			key->next = temp;
-
-			printf("List after swap: ");
 			print_list(*list);
 		}
 	}
