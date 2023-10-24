@@ -15,10 +15,33 @@
  *                       also expected to print the list after each time
  *                       you swap two elements
  * @list: the pointer to the  list to be swaped
+ * Returns: nothing(everything should be printed inside the list)
  */
 void insertion_sort_list(listint_t **list)
 {
-	int i, j;
+	listint_t *key, *temp;
 
-	while 
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
+		return;
+
+	for (key = (*list)->next; key != NULL; key = key->next)
+	{
+		for (temp = key->prev; temp != NULL && temp->n > key->n; temp = temp->prev)
+		{
+			if (temp->prev != NULL)
+				temp->prev->next = key;
+			else
+				*list = key;
+
+			if (key->next != NULL)
+				key->next->prev = temp;
+
+			key->prev = temp->prev;
+			temp->prev = key->next;
+			key->next = temp;
+
+			printf("List after swap: ");
+			print_list(*list);
+		}
+	}
 }
