@@ -34,7 +34,7 @@ void counting_sort(int *array, size_t size)
 {
 	int i, *counter, *output; 
 	int j, n;
-	
+
 	if (array == NULL || size < 2)
 		return;
 
