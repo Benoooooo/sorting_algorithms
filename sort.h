@@ -29,4 +29,5 @@ void counting_sort(int *array, size_t size);
 /*Helper function */
 void swap(int *a, int *b);
 int get_max_num(int *array, size_t size);
+int get_biggest_num(int *array, size_t size);
 #endif
